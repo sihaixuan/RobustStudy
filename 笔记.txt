@@ -1,0 +1,9 @@
+
+一、参看资料：
+    1.Android中热修复框架Robust原理解析+并将框架代码从"闭源"变成"开源"(上篇)
+      http://blog.csdn.net/jiangwei0910410003/article/details/53693017
+    2.让gradle执行cmd 或者其他exe命令的方法 http://blog.csdn.net/lixiaodaoaaa/article/details/51594404,http://www.cnblogs.com/kangyi/p/4430318.html
+
+二、问题：
+    1.生成dex 文件 构建makeDex 见build.gradle
+    2.自动插入代码

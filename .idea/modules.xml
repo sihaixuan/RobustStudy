@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/RobustHost/RobustHost.iml" filepath="$PROJECT_DIR$/RobustHost/RobustHost.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RobustPatch/RobustPatch.iml" filepath="$PROJECT_DIR$/RobustPatch/RobustPatch.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RobustStudy.iml" filepath="$PROJECT_DIR$/RobustStudy.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RobustpatchImpl/RobustpatchImpl.iml" filepath="$PROJECT_DIR$/RobustpatchImpl/RobustpatchImpl.iml" />
+    </modules>
+  </component>
+</project>

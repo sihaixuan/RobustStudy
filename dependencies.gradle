@@ -1,0 +1,53 @@
+allprojects{
+    repositories{
+        jcenter()
+    }
+}
+
+ext{
+   // android
+    minSdkVersion = 16
+    targetSdkVersion = 24
+    compileSdkVersion = 24
+    buildToolsVersion = "24.0.2"
+    applicationId = "com.toney.componentdemo"
+    versionCode = 1
+    versionName = "1.0"
+
+    // dependencies
+    dependencies = [
+            appcompatv7              : "com.android.support:appcompat-v7:24.2.1",
+            recyclerView             : "com.android.support:recyclerview-v7:24.2.1",
+            androidDesign            : "com.android.support:design:24.2.1",
+            cardView                 : "com.android.support:cardview-v7:24.2.1",
+
+            multidex                 : "com.android.support:multidex:1.0.1",
+
+            retrofit                 : "com.squareup.retrofit2:retrofit:2.1.0",
+            retrofitConverterGson    : "com.squareup.retrofit2:converter-gson:2.1.0",
+            retrofitAdapterRxjava    : "com.squareup.retrofit2:adapter-rxjava:2.1.0",
+
+            okHttp3LoggingInterceptor: "com.squareup.okhttp3:logging-interceptor:3.4.1",
+
+            rxAndroid                : "io.reactivex:rxandroid:1.1.0",
+
+            gson                     : "com.google.code.gson:gson:2.7",
+
+            glide                    : "com.github.bumptech.glide:glide:3.6.1",
+
+            eventbus                 : "org.greenrobot:eventbus:3.0.0",
+
+            butterknife              : "com.jakewharton:butterknife:8.4.0",
+            butterknifeCompiler   : "com.jakewharton:butterknife-compiler:8.4.0",
+
+
+            greendao                     : "org.greenrobot:greendao:3.2.0",
+
+            sqlcipher                     : "net.zetetic:android-database-sqlcipher:3.5.4",
+
+
+
+    ]
+}
+
+

@@ -1,0 +1,51 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile rootProject.ext.dependencies.appcompatv7
+    compile project(":RobustPatch")
+}
+
+task makeJar(type: org.gradle.api.tasks.Copy){
+    from('build/intermediates/bundles/release/')
+    into('build/outputs/')
+    include('classes.jar')
+
+}
+
+makeJar.dependsOn(build)
+
+task makeDex(type:Exec){
+      workingDir file("./build/intermediates/bundles/debug")
+//    commandLine "dx --dex --output=patch.dex classes.jar"
+    String path = "dx --dex --output=" +getBuildDir() + '\\outputs\\patch.dex '+ "classes.jar"
+//    println(path)
+    commandLine 'cmd',"/c", path
+}
+
+makeDex.dependsOn(build)
+
