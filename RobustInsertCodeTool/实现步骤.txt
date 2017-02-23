@@ -1,0 +1,5 @@
+1.确定插入目标：
+    1.字段    public static IChangeQuickRedirect changeQuickRedirect
+    2.方法体 插入代码
+
+    参考ASM Bytecode Outline 插件 查看到的代码

@@ -1,1 +1,1 @@
-include ':RobustHost', ':RobustpatchImpl', ':RobustPatch'
+include ':RobustHost', ':RobustpatchImpl', ':RobustPatch', ':robustinsertcodeplugin' //,':RobustInsertCodeTool'

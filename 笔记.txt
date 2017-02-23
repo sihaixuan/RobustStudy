@@ -3,7 +3,21 @@
     1.Android中热修复框架Robust原理解析+并将框架代码从"闭源"变成"开源"(上篇)
       http://blog.csdn.net/jiangwei0910410003/article/details/53693017
     2.让gradle执行cmd 或者其他exe命令的方法 http://blog.csdn.net/lixiaodaoaaa/article/details/51594404,http://www.cnblogs.com/kangyi/p/4430318.html
-
+    3.Android 热修复使用Gradle Plugin1.5改造Nuwa插件 http://blog.csdn.net/sbsujjbcy/article/details/50839263
 二、问题：
     1.生成dex 文件 构建makeDex 见build.gradle
     2.自动插入代码
+      1)Android studio 添加外部工具查看byteCode （本质：调用javap） http://blog.csdn.net/qq_24489717/article/details/53837493
+        添加看 asm代码(注意：要重新编译后才会同步) ASM Bytecode Outline 插件查
+
+      2)插桩入口
+        （1）javac之后,只能插入主project,lib project和三方jar 不行。
+             在javaCompile task 任务的最后添加一个action http://blog.csdn.net/innost/article/details/49387395
+         (2) hook dx  所有代码都可以
+             http://mp.weixin.qq.com/s/SyFe2CgKW51ROAcFHd0a5Q
+             从1.5开始，gradle插件包含了一个叫Transform的API，这个API允许第三方插件在class文件转为为dex文件前操作
+             编译好的class文件，这个API的目标就是简化class文件的自定义的操作而不用对Task进行处理，并且可以更加灵活地进行操作
+      3）构建InsertCodeTool gradle插件
+      4） javaCompile task 仅有代码发生变化后，才会执行
+
+

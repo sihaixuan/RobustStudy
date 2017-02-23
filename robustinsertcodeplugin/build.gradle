@@ -1,0 +1,28 @@
+apply plugin: 'java'
+apply plugin: 'groovy'
+apply plugin: 'maven'
+
+version = '1.0'
+group = 'toney'
+archivesBaseName = 'RobustInsertCode'
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile localGroovy()
+    compile gradleApi()
+    compile 'com.android.tools.build:gradle:2.2.1'
+    compile 'org.javassist:javassist:3.20.0-GA'
+
+}
+
+sourceCompatibility = "1.7"
+targetCompatibility = "1.7"
+
+
+//上传本地仓库
+uploadArchives {
+    repositories.mavenDeployer {
+        repository(url: 'file:../lib')
+    }
+
+}

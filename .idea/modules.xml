@@ -6,6 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/RobustPatch/RobustPatch.iml" filepath="$PROJECT_DIR$/RobustPatch/RobustPatch.iml" />
       <module fileurl="file://$PROJECT_DIR$/RobustStudy.iml" filepath="$PROJECT_DIR$/RobustStudy.iml" />
       <module fileurl="file://$PROJECT_DIR$/RobustpatchImpl/RobustpatchImpl.iml" filepath="$PROJECT_DIR$/RobustpatchImpl/RobustpatchImpl.iml" />
+      <module fileurl="file://$PROJECT_DIR$/robustinsertcodeplugin/robustinsertcodeplugin.iml" filepath="$PROJECT_DIR$/robustinsertcodeplugin/robustinsertcodeplugin.iml" />
     </modules>
   </component>
 </project>

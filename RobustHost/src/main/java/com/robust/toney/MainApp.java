@@ -4,7 +4,7 @@ import android.app.Application;
 import android.content.Context;
 
 
-import com.robust.toney.utils.PatchProxy;
+import com.robust.toney.patch.utils.PatchProxy;
 
 import java.io.File;
 
@@ -18,6 +18,7 @@ public class MainApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
     }
 
     @Override

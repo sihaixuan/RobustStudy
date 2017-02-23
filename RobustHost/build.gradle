@@ -1,5 +1,22 @@
 apply plugin: 'com.android.application'
 
+apply plugin: 'InsertCode'
+
+buildscript {
+    repositories {
+        maven {
+            url 'file:../lib'
+        }
+        jcenter()
+    }
+
+    dependencies {
+
+        classpath group: 'toney', name: 'RobustInsertCode', version: '1.0'
+
+    }
+}
+
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
@@ -12,7 +29,7 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
