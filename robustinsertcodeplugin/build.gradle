@@ -11,7 +11,7 @@ dependencies {
     compile localGroovy()
     compile gradleApi()
     compile 'com.android.tools.build:gradle:2.2.1'
-    compile 'org.javassist:javassist:3.20.0-GA'
+    compile 'com.squareup.leakcanary:leakcanary-android:1.5'
 
 }
 
@@ -22,7 +22,24 @@ targetCompatibility = "1.7"
 //上传本地仓库
 uploadArchives {
     repositories.mavenDeployer {
-        repository(url: 'file:../lib')
+        repository(url: "file:${project.rootDir.absolutePath}/lib")
+
     }
 
+}
+
+artifacts{
+
+}
+
+
+
+
+
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+
+tasks.withType(org.gradle.api.tasks.compile.GroovyCompile){
+    options.encoding = "UTF-8"
 }

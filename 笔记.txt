@@ -17,7 +17,7 @@
              http://mp.weixin.qq.com/s/SyFe2CgKW51ROAcFHd0a5Q
              从1.5开始，gradle插件包含了一个叫Transform的API，这个API允许第三方插件在class文件转为为dex文件前操作
              编译好的class文件，这个API的目标就是简化class文件的自定义的操作而不用对Task进行处理，并且可以更加灵活地进行操作
-      3）构建InsertCodeTool gradle插件
+      3）构建InsertCodeTool gradle插件 ,在class 动态添加函数实现有问题（visitEnd入口）
       4） javaCompile task 仅有代码发生变化后，才会执行
 
 

@@ -2,17 +2,11 @@ package com.toney.robust.plugin.insertcode
 
 import com.android.build.gradle.AppExtension
 import com.android.build.gradle.AppPlugin
-import com.android.build.gradle.api.BaseVariant
-import com.android.dx.cf.direct.ClassPathOpener.FileNameFilter
-import com.intellij.openapi.diagnostic.LogUtil
-import com.toney.robust.plugin.insertcode.util.InsertCodeUtils
-import org.gradle.api.Action
+
+
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.gradle.api.ProjectConfigurationException
-import org.gradle.api.Task
 import org.gradle.api.file.FileCollection
-import org.gradle.api.file.FileTree
 import org.gradle.api.tasks.compile.JavaCompile;
 
 /**
@@ -39,7 +33,8 @@ public class InsertCodePlugin implements Plugin<Project>{
 
         if(project.plugins.hasPlugin(AppPlugin.class)){
             def android = project.extensions.getByType(AppExtension.class)
-            android.registerTransform(new RobustTransform(project))
+//            android.registerTransform(new RobustTransform(project))
+            android.registerTransform(new LeakCanaryTransform(project))
         }
         project.afterEvaluate {
             project.android.applicationVariants.each { variant ->

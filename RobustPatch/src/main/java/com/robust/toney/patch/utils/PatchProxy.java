@@ -28,7 +28,7 @@ public class PatchProxy {
             if(file != null && file.exists()){
                 Log.e("PatchProxy","find patch.dex");
             }
-            mLoader = new DexClassLoader(patchDexPath,context.getExternalCacheDir().getAbsolutePath(),null,this.getClass().getClassLoader());
+            mLoader = new DexClassLoader(patchDexPath,context.getDir("libs",0).getAbsolutePath(),null,this.getClass().getClassLoader());
         }catch (Exception e){
             Log.e("PatchProxy","load patch dex fail :" + Log.getStackTraceString(e));
         }
@@ -84,18 +84,20 @@ public class PatchProxy {
     }
 
     public void patch(){
+        String className = "";
         try{
             Class<?> pathInfoClazz = mLoader.loadClass("com.robust.toney.patch.impl.PatchInfoImpl");
             List<PatchClassInfo> infoList = ((IPatchInfo)pathInfoClazz.newInstance()).getPatchedClassesInfo();
             for(PatchClassInfo info : infoList){
                 IChangeQuickRedirect changeQuickRedirect = (IChangeQuickRedirect) mLoader.loadClass(info.getPatchClassName()).newInstance();
                 Class<?> fixedClass = mLoader.loadClass(info.getFixClassName());
+                className = info.getFixClassName();
                 Field changeQuickRedirectField = fixedClass.getField("changeQuickRedirect");
                 changeQuickRedirectField.set(null,changeQuickRedirect);
             }
             Log.d("toney","patch success ");
         }catch (Exception e){
-            Log.d("toney","patch error :" + Log.getStackTraceString(e));
+            Log.d("toney","patch error : " + className +" " + Log.getStackTraceString(e));
         }
     }
 

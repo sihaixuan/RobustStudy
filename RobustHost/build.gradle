@@ -12,7 +12,7 @@ buildscript {
 
     dependencies {
 
-        classpath group: 'toney', name: 'RobustInsertCode', version: '1.0'
+       classpath group: 'toney', name: 'RobustInsertCode', version: '1.0'
 
     }
 }
@@ -27,9 +27,21 @@ android {
         versionCode rootProject.ext.versionCode
         versionName rootProject.ext.versionName
     }
+    signingConfigs {
+        release {
+            keyAlias 'android'
+            keyPassword 'android'
+            storeFile file(project.rootDir.absolutePath + '/android.jks')
+            storePassword 'android'
+            // 使用旧版签名，禁用V2版签名模式
+            v2SigningEnabled false
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled true
+            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -42,5 +54,8 @@ dependencies {
     })
     compile rootProject.ext.dependencies.appcompatv7
     compile project(":RobustPatch")
+    compile 'com.squareup.leakcanary:leakcanary-android:1.5'
 
 }
+
+

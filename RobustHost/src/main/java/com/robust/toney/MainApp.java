@@ -6,6 +6,7 @@ import android.content.Context;
 
 import com.robust.toney.patch.utils.PatchProxy;
 
+
 import java.io.File;
 
 
@@ -15,9 +16,12 @@ import java.io.File;
 
 public class MainApp extends Application {
 
+
+
     @Override
     public void onCreate() {
         super.onCreate();
+
 
     }
 
@@ -27,4 +31,5 @@ public class MainApp extends Application {
 
         new PatchProxy(getExternalCacheDir().getParentFile().getParentFile().getParentFile().getParentFile().getAbsolutePath() + File.separator+"patch.dex",base).patch();
     }
+
 }
