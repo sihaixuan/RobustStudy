@@ -7,9 +7,9 @@ allprojects{
 ext{
    // android
     minSdkVersion = 16
-    targetSdkVersion = 24
-    compileSdkVersion = 24
-    buildToolsVersion = "24.0.2"
+    targetSdkVersion = 25
+    compileSdkVersion = 25
+    buildToolsVersion = "25.0.0"
     applicationId = "com.toney.componentdemo"
     versionCode = 1
     versionName = "1.0"

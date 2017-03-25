@@ -12,7 +12,7 @@ buildscript {
 
     dependencies {
 
-       classpath group: 'toney', name: 'RobustInsertCode', version: '1.0'
+      classpath group: 'toney', name: 'RobustInsertCode', version: '1.0'
 
     }
 }
@@ -54,7 +54,16 @@ dependencies {
     })
     compile rootProject.ext.dependencies.appcompatv7
     compile project(":RobustPatch")
-    compile 'com.squareup.leakcanary:leakcanary-android:1.5'
+
+}
+
+
+task printConfig(){
+    def configs = project.configurations.getAsMap()
+    for(Map.Entry entry : configs){
+        println "key :" + entry.key + ",value : " + entry.value
+    }
+
 
 }
 

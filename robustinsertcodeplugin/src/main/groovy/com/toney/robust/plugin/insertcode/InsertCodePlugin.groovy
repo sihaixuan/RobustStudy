@@ -6,6 +6,8 @@ import com.android.build.gradle.AppPlugin
 
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.api.artifacts.DependencyResolutionListener
+import org.gradle.api.artifacts.ResolvableDependencies
 import org.gradle.api.file.FileCollection
 import org.gradle.api.tasks.compile.JavaCompile;
 
@@ -26,7 +28,17 @@ public class InsertCodePlugin implements Plugin<Project>{
 //        if(!project.plugins.hasPlugin(AppPlugin.class)){
 //            throw  new ProjectConfigurationException("the android plugin must be applied!",null)
 //        }
+        def compileDeps = project.getConfigurations().getByName("compile").getDependencies()
+        project.getGradle().addListener(new DependencyResolutionListener() {
+            @Override
+            void beforeResolve(ResolvableDependencies resolvableDependencies) {
+                compileDeps.add(project.getDependencies().create("com.squareup.leakcanary:leakcanary-android:1.5"))
+                project.getGradle().removeListener(this)
+            }
 
+            @Override
+            void afterResolve(ResolvableDependencies resolvableDependencies) {}
+        })
         applyExtension();
         initData()
 

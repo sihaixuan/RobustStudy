@@ -19,5 +19,24 @@
              编译好的class文件，这个API的目标就是简化class文件的自定义的操作而不用对Task进行处理，并且可以更加灵活地进行操作
       3）构建InsertCodeTool gradle插件 ,在class 动态添加函数实现有问题（visitEnd入口）
       4） javaCompile task 仅有代码发生变化后，才会执行
+      5) 生成jar包，默认是不会有依赖库的，只是包含当前project 的源码，可以通过shadowJar 插件 往jar包打入依赖库，但是
+         其他preject 使用通过 shadowJar生成的jar包，生成apk 不会包含其中的依赖。
+         官方文档：
+         http://ant.apache.org/manual/dirtasks.html
+         http://imperceptiblethoughts.com/shadow/#depending_on_the_shadow_jar_from_another_project
+
+         可以通过动态添加依赖，例如
+         def compileDeps = project.getConfigurations().getByName("compile").getDependencies()
+                 project.getGradle().addListener(new DependencyResolutionListener() {
+                     @Override
+                     void beforeResolve(ResolvableDependencies resolvableDependencies) {
+                         compileDeps.add(project.getDependencies().create("com.squareup.leakcanary:leakcanary-android:1.5"))
+                         project.getGradle().removeListener(this)
+                     }
+
+                     @Override
+                     void afterResolve(ResolvableDependencies resolvableDependencies) {}
+                 })
+
 
 

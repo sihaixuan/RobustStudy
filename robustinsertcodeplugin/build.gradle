@@ -1,6 +1,18 @@
 apply plugin: 'java'
 apply plugin: 'groovy'
 apply plugin: 'maven'
+apply plugin: 'com.github.johnrengelman.shadow'
+
+buildscript {
+    repositories {
+        jcenter()
+
+    }
+    dependencies {
+        classpath 'com.github.jengelman.gradle.plugins:shadow:1.2.4'
+    }
+}
+
 
 version = '1.0'
 group = 'toney'
@@ -19,6 +31,58 @@ sourceCompatibility = "1.7"
 targetCompatibility = "1.7"
 
 
+//上传本地仓库 默认打jar，不会包含依赖，只会包含源码
+
+
+uploadShadow{
+    repositories{
+        mavenDeployer{
+            repository(url: "file:${project.rootDir.absolutePath}/lib")
+
+        }
+    }
+
+}
+
+
+def dependencyHandler = project.getDependencies();
+def localGroovyDependency = dependencyHandler.localGroovy()
+def gradleApiDependency = dependencyHandler.gradleApi()
+
+String localGroovy = localGroovyDependency.getGroup() + ":" + localGroovyDependency.name + ":" + localGroovyDependency.version
+String gradleApi = gradleApiDependency.getGroup() + ":" + gradleApiDependency.name + ":" + gradleApiDependency.version
+
+
+shadowJar {
+    baseName = "RobustInsertCode"
+    classifier  = null
+    version = "1.0"
+
+    dependencies {
+        include(dependency('com.squareup.leakcanary:leakcanary-android:1.5'))
+        exclude(dependency {
+            it.moduleGroup == 'junit'
+        })
+        exclude(dependency('com.android.tools.build:gradle:2.2.1'))
+
+    }
+
+//    exclude '**/aQute/**'
+//    exclude '**/groovy/**'
+//    exclude '**/bsh/**'
+//    exclude '**/com/*amazonaws/**'
+//    exclude '**/groovyjarjarantlr/**'
+//    exclude '**/javax/**'
+//    exclude '**/org/**'
+//    exclude '**/OSGI*/**'
+//    exclude '**/jcifs/**'
+//    exclude '**/junit/**'
+//    exclude '**/META_INF*/**'
+    include 'META-INF/gradle-plugins/InsertCode.properties'
+    include 'leakcanary-android-1.5.aar'
+    include '**/com/toney/**'
+}
+
 //上传本地仓库
 uploadArchives {
     repositories.mavenDeployer {
@@ -28,14 +92,6 @@ uploadArchives {
 
 }
 
-artifacts{
-
-}
-
-
-
-
-
 tasks.withType(JavaCompile) {
     options.encoding = "UTF-8"
 }
@@ -43,3 +99,4 @@ tasks.withType(JavaCompile) {
 tasks.withType(org.gradle.api.tasks.compile.GroovyCompile){
     options.encoding = "UTF-8"
 }
+
